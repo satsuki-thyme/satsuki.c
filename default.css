@@ -1,0 +1,885 @@
+/*
+  ######      #######     ##           #######     ########  
+ ##    ##    ##     ##    ##          ##     ##    ##     ## 
+ ##          ##     ##    ##          ##     ##    ##     ## 
+ ##          ##     ##    ##          ##     ##    ########  
+ ##          ##     ##    ##          ##     ##    ##   ##   
+ ##    ##    ##     ##    ##          ##     ##    ##    ##  
+  ######      #######     ########     #######     ##     ## 
+*/
+:root {
+  --thyme--1: #325718;
+  --thyme--2: #42721f;
+  --thyme-0: #62a433;
+  --thyme-1: #6eb43c;
+  --thyme-2: #92ce67;
+  --dark--2: #080807;
+  --dark--1: #10110f;
+  --dark-0: #1e1f1c;
+  --dark-1: #30312d;
+  --dark-2: #484944;
+  --light--2: #c2bbad;
+  --light--1: #e7e1d6;
+  --light-0: #f1eee9;
+  --light-1: #faf4ec;
+  --light-2: #fffdf9;
+  --passion--1: #701302;
+  --passion-0: #aa1f06;
+  --passion-1: #c22e14;
+  --orange--1: #c57907;
+  --orange-0: #e79213;
+  --orange-1: #f8a932;
+  --lime--1: #88b326;
+  --lime-0: #b5e24a;
+  --lime-1: #cffd63;
+  --forest--1: #023112;
+  --forest-0: #065320;
+  --forest-1: #096929;
+  --turquoise--1: #0f9999;
+  --turquoise-0: #1ac0c0;
+  --turquoise-1: #2edddd;
+  --sky--1: #0a76ce;
+  --sky-0: #1293fc;
+  --sky-1: #46acff;
+  --ocean--1: #06216b;
+  --ocean-0: #0a3099;
+  --ocean-1: #0d42d4;
+  --grape--1: #780986;
+  --grape-0: #930ca5;
+  --grape-1: #bd14d3;
+}
+body {
+  color: var(--dark-0);
+  background-color: #fff;
+}
+table,
+td,
+th {
+  border-color: var(--dark-2);
+}
+a,
+a:visited {
+  color: var(--sky-1);
+}
+#return-to-top {
+  background-color: var(--light--1);
+}
+.text .control-panel {
+  background-color: #fff;
+}
+.text .control-panel .switch-set {
+  border-color: var(--light-2);
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    color: var(--light-0);
+    background-color: var(--dark-0);
+  }
+  table,
+  td,
+  th {
+    border-color: var(--dark-2);
+  }
+  a,
+  a:visited {
+    color: var(--sky-1);
+  }
+  #return-to-top {
+    background-color: var(--dark--1);
+  }
+  .text .control-panel {
+    background-color: var(--dark-0);
+  }
+  .text .control-panel .switch-set {
+    border-color: var(--dark-2);
+  }
+}
+.text.internet .control-panel {
+  height: 0;
+  visibility: hidden;
+}
+.text #pre-area.display {
+  background-color: var(--dark--2);
+}
+
+
+
+
+
+
+/*
+ ########        ###        ######     ######## 
+ ##     ##      ## ##      ##    ##    ##       
+ ##     ##     ##   ##     ##          ##       
+ ########     ##     ##     ######     ######   
+ ##     ##    #########          ##    ##       
+ ##     ##    ##     ##    ##    ##    ##       
+ ########     ##     ##     ######     ######## 
+*/
+body {
+  margin: auto;
+  font-family: Helvetica, Arial, "ヒラギノ角ゴシック", "游ゴシック", "メイリオ";
+  font-size: 17.5px;
+}
+html:not(.vertical) #active-container header,
+html:not(.vertical) #active-container footer,
+html:not(.vertical) #active-container main,
+html:not(.vertical) #static-container aside {
+  width: 100%;
+  max-width: 665px;
+  box-sizing: border-box;
+}
+#active-container header,
+#active-container footer {
+  text-align: center;
+}
+#active-container header {
+  padding-top: 5px;
+}
+#active-container header p {
+  margin: 0;
+}
+.internet header#site-header {
+  padding-top: 0;
+}
+#active-container header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+#active-container footer {
+  padding-top: 30px;
+}
+#active-container header .return-to-index {
+  padding-top: 30px;
+}
+#active-container footer .return-to-index {
+  padding-bottom: 50px;
+}
+#active-container section > section {
+  margin-top: 30px;
+  margin-left: 15px;
+}
+#active-container h1,
+#active-container h2,
+#active-container h3,
+#active-container h4,
+#active-container h5,
+#active-container h6 {
+  margin: 0;
+}
+#active-container main h1 {
+  font-size: 38px;
+}
+#active-container main h2 {
+  font-size: 32px;
+}
+#active-container main h3 {
+  font-size: 27px;
+}
+#active-container main h4 {
+  font-size: 20px;
+}
+#active-container main h5 {
+  font-size: 16px;
+}
+#active-container main h6 {
+  font-size: 12px;
+}
+#active-container ul,
+#active-container ol {
+  margin-left: 10px;
+}
+#active-container li + * li + * li + * li {
+  list-style-type: disc;
+}
+#active-container li + * li + * li + * li + * li {
+  list-style-type: circle;
+}
+#active-container li + * li + * li + * li + * li + * li {
+  list-style-type: square;
+}
+#active-container li + * li + * li + li + * li + * li + * li {
+  list-style-type: disc;
+}
+#active-container li + * li + * li + li + * li + * li + * li + * li {
+  list-style-type: circle;
+}
+#active-container li + * li + * li + li + * li + * li + * li + * li + * li {
+  list-style-type: square;
+}
+#active-container table,
+#active-container td,
+#active-container th {
+  border-style: solid;
+}
+#active-container table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-width: 1px;
+}
+#active-container td,
+#active-container th {
+  padding: 5px 10px;
+  line-height: 1.5;
+  vertical-align: top;
+  border-width: 1px 0 0 1px;
+}
+#active-container tr:first-child td,
+#active-container tr:first-child th {
+  border-top-width: 0;
+}
+#active-container td:first-child,
+#active-container th:first-child {
+  border-left-width: 0;
+}
+#active-container thead + tbody tr:first-child td,
+#active-container thead + tbody tr:first-child th {
+  border-top-width: 1px;
+}
+#active-container tfoot tr:first-child td,
+#active-container tfoot tr:first-child th {
+  border-top-width: 1px;
+}
+#active-container label {
+  user-select: none;
+}
+#active-container hr {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+#container {
+  min-height: calc(100% - 300px);
+  padding: 10px 3px;
+  box-sizing: border-box;
+}
+#active-container,
+#static-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#static-container {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+}
+#copyright {
+  margin: 0;
+}
+/*
+  ######      #######     ##     ##    ##     ##     #######     ##    ## 
+ ##    ##    ##     ##    ###   ###    ###   ###    ##     ##    ###   ## 
+ ##          ##     ##    #### ####    #### ####    ##     ##    ####  ## 
+ ##          ##     ##    ## ### ##    ## ### ##    ##     ##    ## ## ## 
+ ##          ##     ##    ##     ##    ##     ##    ##     ##    ##  #### 
+ ##    ##    ##     ##    ##     ##    ##     ##    ##     ##    ##   ### 
+  ######      #######     ##     ##    ##     ##     #######     ##    ## 
+*/
+header#site-header {
+  display: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.internet header#site-header {
+  display: initial;
+}
+footer#site-footer {
+  padding-top: 50px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+#site-logo {
+  width: 240px;
+  height: 55px;
+  margin: 15px auto;
+  background-image: url('attachment/satsuki-thyme-fg-green.svg');
+  background-repeat: no-repeat;
+}
+.index,
+.index body,
+.cover,
+.cover body {
+  height: 100%;
+}
+#static-container aside {
+  position: relative;
+}
+#return-to-top {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  right: 5px;
+  bottom: 5px;
+  font-size: 13px;
+  text-align: center;
+  line-height: 52px;
+  opacity: 0.5;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#return-to-top span {
+  user-select: none;
+}
+.anchor {
+  display: block;
+  height: 0;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  line-height: 0;
+}
+/*
+ ####    ##    ##    ########     ########    ##     ## 
+  ##     ###   ##    ##     ##    ##           ##   ##  
+  ##     ####  ##    ##     ##    ##            ## ##   
+  ##     ## ## ##    ##     ##    ######         ###    
+  ##     ##  ####    ##     ##    ##            ## ##   
+  ##     ##   ###    ##     ##    ##           ##   ##  
+ ####    ##    ##    ########     ########    ##     ## 
+*/
+.index {
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.index #status-switch {
+  padding-bottom: 15px;
+}
+.index.internet #status-switch,
+.index.internet #character-count-log-field {
+  height: 0;
+  visibility: hidden;
+}
+.index.internet #not-found-field {
+  display: none;
+}
+.index.internet #active-container > main > section:nth-child(2) {
+  display: none;
+}
+.index #active-container > main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.index #active-container > main > section + section {
+  margin-top: 20px;
+}
+.index #op-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.index #not-found-field {
+  display: none;
+}
+.index #not-found-field.not-found {
+  display: initial;
+}
+.index #not-found-field ul {
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+}
+.index #character-count-log-field {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.index #character-count-log-field > h2 {
+  line-height: 1;
+}
+.index #character-count-log-field > div {
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  text-align: center;
+}
+.index #data-table.d7 tbody tr:nth-child(n + 9):not(:last-child) {
+  display: none;
+}
+.index #data-table.d30 tbody tr:nth-child(n + 32):not(:last-child) {
+  display: none;
+}
+.index #op-list-table td:first-child {
+  text-align: center;
+}
+.index #character-count-log-field p {
+  margin: 10px;
+  font-size: 18px;
+}
+.index #character-count-log-field table tbody td:nth-child(1) {
+  text-align: center;
+}
+.index #character-count-log-field table tbody td:nth-child(2),
+.index #character-count-log-field table tbody td:nth-child(3) {
+  text-align: right;
+}
+.index #character-count-log-field table tbody td:nth-child(1) span {
+  letter-spacing: 0.8em;
+}
+.index #data-table tr {
+  user-select: all;
+}
+.index #right-field div + div {
+  margin-top: 30px;
+}
+.index #to-x-field p {
+  font-size: 16px;
+  text-align: left;
+  user-select: all;
+}
+.index #upload-download-field #upload-download-button {
+  display: flex;
+}
+.index #upload-download-field #upload-button {
+  align-self: flex-start;
+  font-size: 10px;
+}
+.index #upload-download-field #download-button {
+  align-self: flex-end;
+  margin-top: -23px;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+/*
+  ######      #######     ##     ##    ########    ######## 
+ ##    ##    ##     ##    ##     ##    ##          ##     ##
+ ##          ##     ##    ##     ##    ##          ##     ##
+ ##          ##     ##    ##     ##    ######      ######## 
+ ##          ##     ##     ##   ##     ##          ##   ##  
+ ##    ##    ##     ##      ## ##      ##          ##    ## 
+  ######      #######        ###       ########    ##     ##
+*/
+.cover main {
+  display: flex;
+  flex-wrap: wrap;
+}
+.cover main section {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-grow: 1;
+}
+.cover main > section:first-child {
+  flex-basis: 100%;
+}
+.cover main > section {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.cover main section > div:has(> section) {
+  display: flex;
+  justify-content: space-around;
+}
+.cover main section > div:has(> h1):has(> div),
+.cover main section > div:has(> h2):has(> div),
+.cover main section > div:has(> h3):has(> div),
+.cover main section > div:has(> h4):has(> div),
+.cover main section > div:has(> h5):has(> div),
+.cover main section > div:has(> h6):has(> div) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.cover main div > section + section {
+  margin-left: 30px;
+}
+.cover section {
+  margin: 25px 0;
+}
+.cover section > div {
+  flex-grow: 1;
+}
+.cover h2 + div > section,
+.cover h3 + div > section,
+.cover h4 + div > section,
+.cover h5 + div > section,
+.cover h6 + div > section {
+  margin-top: 0;
+}
+.cover h2,
+.cover h3,
+.cover h4,
+.cover h5,
+.cover h6 {
+  line-height: 1.5;
+}
+.cover #list ul {
+  width: fit-content;
+  margin: 0;
+  padding-left: 2em;
+}
+.cover table {
+  margin: auto;
+  font-size: 90%;
+}
+.cover table + table {
+  margin-top: 30px;
+}
+@media screen and (max-width: 320px) {
+  .cover table {
+    font-size: 70%;
+  }
+    .cover thead {
+    font-size: 50%;
+    font-weight: normal;
+  }
+  .cover td,
+  .cover th {
+    padding: 2px 3px;
+  }
+}
+@media screen and (min-width: 321px) and (max-width: 600px) {
+  .cover table {
+    font-size: 80%;
+  }
+    .cover thead {
+    font-size: 70%;
+  }
+  .cover td,
+  .cover th {
+    padding: 3px 5px;
+  }
+}
+.cover table.text-table td:nth-child(1),
+.cover table.text-table td:nth-child(4),
+.cover table.text-table td:nth-child(5),
+.cover table.text-table td:nth-child(6) {
+  text-align: center;
+}
+.cover table.text-table td:nth-child(3) {
+  text-align: right;
+}
+.cover table.doc-table td {
+  text-align: left;
+}
+.cover .text-table tr:last-child td:nth-child(2) {
+  text-align: center;
+}
+.cover .text-table tr:last-child td:nth-child(2) span {
+  letter-spacing: 2em;
+}
+.cover .text-table td:nth-child(3) {
+  user-select: all;
+}
+
+
+
+
+
+/*
+ ########    ########    ##     ##    ######## 
+    ##       ##           ##   ##        ##    
+    ##       ##            ## ##         ##    
+    ##       ######         ###          ##    
+    ##       ##            ## ##         ##    
+    ##       ##           ##   ##        ##    
+    ##       ########    ##     ##       ##    
+*/
+.text #text-area p {
+  font-family: dcsymbols,'游明朝',YuMincho,'ヒラギノ明朝 Pr6N','Hiragino Mincho Pr6N','ヒラギノ明朝 ProN','Hiragino Mincho ProN','ヒラギノ明朝 StdN','Hiragino Mincho StdN',HiraMinProN-W3,'HGS明朝B','HG明朝B',dcsymbols,'Helvetica Neue',Helvetica,Arial,'ヒラギノ角ゴ Pr6N','Hiragino Kaku Gothic Pr6N','ヒラギノ角ゴ ProN','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ StdN','Hiragino Kaku Gothic StdN','Segoe UI',Verdana,'メイリオ',Meiryo,sans-serif;
+  font-size: 17.5px;
+  line-height: 1.8;
+}
+.text header p.context-level-1 {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: normal;
+}
+.text .control-panel {
+  display: flex;
+  justify-content: center;
+  font-size: 80%;
+}
+.text .control-panel .label {
+  font-size: 85%;
+}
+.text .control-panel .switch-set {
+  display: inline-block;
+  margin: 5px;
+  padding: 3px 5px;
+  vertical-align: middle;
+  border-width: 1px;
+  border-style: solid;
+}
+.text .control-panel label {
+  display: inline-block;
+  padding: 1px 0 0 0;
+}
+.text .control-panel input {
+  display: inline-block;
+  vertical-align: -10%;
+}
+.text .control-panel .text-select input {
+  font-size: 70%;
+}
+.text #pre-area {
+  display: none;
+}
+.text #pre-area.display {
+  display: initial;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  padding: 2em;
+}
+.text #char-num {
+  display: none;
+}
+/*
+ ##    ######################### ###### ##### ##      
+ ##    ####     ##   ##  ##   ####     ##   ####      
+ ##    #######  ######   ##   ####     #########      
+  ##  ## ##     ##   ##  ##   ####     ##   ####      
+   ####  #########   ##  ##   ## ########   ######### 
+*/
+.vertical body {
+  writing-mode: vertical-rl;
+}
+.vertical #container,
+.vertical #active-container,
+.vertical #text-area {
+  width: 100%;
+}
+/*
+ ########      #######      ######  
+ ##     ##    ##     ##    ##    ## 
+ ##     ##    ##     ##    ##       
+ ##     ##    ##     ##    ##       
+ ##     ##    ##     ##    ##       
+ ##     ##    ##     ##    ##    ## 
+ ########      #######      ######  
+*/
+.doc {
+  flex-direction: column;
+}
+.doc aside {
+  order: 0;
+}
+.doc header {
+  order: 1;
+}
+.doc main {
+  order: 2;
+  padding: 50px 10px;
+}
+.doc footer {
+  order: 3;
+}
+.doc .brackets {
+  color: #d00;
+}
+.doc blockquote {
+  padding-left: 10px;
+  border-left: 7px solid #ccc;
+}
+.doc blockquote blockquote {
+  margin-left: 0;
+}
+.doc code {
+  padding: 3px;
+  color: #f8f8f2;
+  background-color: #272822;
+  border-radius: 3px;
+}
+.doc pre code {
+  display: inline-block;
+  padding: 10px;
+  line-height: 1.5em;
+}
+.doc table + table {
+  margin-top: 20px;
+}
+.doc table,
+.doc td,
+.doc th {
+  border-style: solid;
+  border-color: #0d0015;
+}
+.doc table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-width: 1px;
+}
+.doc td,
+.doc th {
+  padding: 5px 10px;
+  vertical-align: top;
+  border-width: 1px 0 0 1px;
+}
+.doc tr:first-child td,
+.doc tr:first-child th {
+  border-top-width: 0;
+}
+.doc td:first-child,
+.doc th:first-child {
+  border-left-width: 0;
+}
+.doc thead + tbody tr:first-child td,
+.doc thead + tbody tr:first-child th {
+  border-top-width: 1px;
+}
+.doc tfoot tr:first-child td,
+.doc tfoot tr:first-child th {
+  border-top-width: 1px;
+}
+.doc sup a {
+  text-decoration: none;
+  color: #00f;
+}
+.doc main h1::before,
+.doc main h2::before,
+.doc main h3::before,
+.doc main h4::before,
+.doc main h5::before,
+.doc main h6::before {
+  display: inline;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 0;
+  line-height: 1;
+}
+.doc main h1::before {
+  content: ".";
+}
+.doc main h2::before {
+  content: "..";
+}
+.doc main h3::before {
+  content: "...";
+}
+.doc main h4::before {
+  content: "....";
+}
+.doc main h5::before {
+  content: ".....";
+}
+.doc main h6::before {
+  content: "......";
+}
+.doc main p {
+  margin: 0;
+  vertical-align: middle;
+  line-height: 1.8;
+}
+.doc footer p {
+  margin: 0;
+}
+.doc nav {
+  line-height: 1.5em;
+  vertical-align: middle;
+}
+.doc nav div {
+  float: left;
+  padding: 3px;
+}
+.doc nav .left {
+  text-align: right;
+}
+.doc nav .right {
+  text-align: left;
+}
+.doc nav .left,
+.doc nav .right {
+  width: calc(50% - 4em);
+}
+.doc nav .nav-separator {
+  padding: 1em;
+}
+.doc .user-cnt-tasklist {
+  list-style: none;
+  text-indent: -1.5em;
+}
+.doc .user-cnt-table-right {
+  text-align: right;
+}
+.doc .user-cnt-table-center {
+  text-align: center;
+}
+.doc .user-cnt-table-left {
+  text-align: left;
+}
+.doc .user-cnt-arrow {
+  display: inline-block;
+  height: 12px;
+  vertical-align: middle;
+  fill: #00f;
+}
+/*
+ ##     ##       ###       ########     ##    ##    ########      #######     ##      ##    ##    ## 
+ ###   ###      ## ##      ##     ##    ##   ##     ##     ##    ##     ##    ##  ##  ##    ###   ## 
+ #### ####     ##   ##     ##     ##    ##  ##      ##     ##    ##     ##    ##  ##  ##    ####  ## 
+ ## ### ##    ##     ##    ########     #####       ##     ##    ##     ##    ##  ##  ##    ## ## ## 
+ ##     ##    #########    ##   ##      ##  ##      ##     ##    ##     ##    ##  ##  ##    ##  #### 
+ ##     ##    ##     ##    ##    ##     ##   ##     ##     ##    ##     ##    ##  ##  ##    ##   ### 
+ ##     ##    ##     ##    ##     ##    ##    ##    ########      #######      ###  ###     ##    ## 
+*/
+.markdown ul,
+.markdown ol {
+  padding-left: 15px;
+}
+/*
+ ##          ####     ######     ######## 
+ ##           ##     ##    ##       ##    
+ ##           ##     ##             ##    
+ ##           ##      ######        ##    
+ ##           ##           ##       ##    
+ ##           ##     ##    ##       ##    
+ ########    ####     ######        ##    
+*/
+.list {
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+#character-list th:first-child,
+#character-list td:first-child {
+  width: 120px;
+}
+.list p {
+  margin: 0;
+}
+.list header .return {
+  text-align: left;
+}
+.list footer .return {
+  text-align: right;
+}
+.list section h1 + main,
+.list section h2 + main,
+.list section h3 + main,
+.list section h4 + main,
+.list section h5 + main,
+.list section h6 + main {
+  margin-top: 15px;
+}
+.list section + section {
+  margin-top: 50px;
+}
+.list table {
+  width: 100%;
+  margin: auto;
+}
+.list table th,
+.list table td:first-child {
+  word-break: keep-all;
+}
+.list .mark {
+  color: #ff2;
+}
+.list nav {
+  margin: 10px 0;
+}
+.list nav .nav-separator {
+  padding: 0.5em;
+}
+.yaml main {
+  font-family: 'Courier New', Courier, monospace;
+  font-variant-ligatures: none;
+  -webkit-font-feature-settings: "liga" 0;
+  font-feature-settings: "liga" 0;
+  font-size: 15px;
+}

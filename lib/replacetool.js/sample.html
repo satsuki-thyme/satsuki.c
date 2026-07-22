@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body></body>
+<script src="replacetool.js"></script>
+<script>
+let body = document.querySelector(`body`)
+let promiseArray = []
+promiseArray.push(
+  new Promise(resolve => {
+    fetch(`sample.json`)
+    .then(async rly => resolve(["recipe", await rly.json()]))
+  })
+)
+promiseArray.push(
+  new Promise(resolve => {
+    fetch(`sample.txt`)
+    .then(async rly => resolve(["source", await rly.text()]))
+  })
+)
+Promise.all(promiseArray)
+.then(rly => {
+  replacetool(rly.filter(rly => rly[0] === `recipe`)[0][1], rly.filter(rly => rly[0] === `source`)[0][1])
+  .then(rly => {
+    body.innerHTML = rly
+  })
+})
+</script>

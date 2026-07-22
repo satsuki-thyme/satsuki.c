@@ -1,0 +1,112 @@
+<div id="container"></div>
+<script src="mdparse.js"></script>
+<script>
+let elm_container = document.querySelector(`#container`)
+fetch(`sample.md`)
+.then(async r => {
+  if (r.ok) {
+    mdparse(await r.text(), {"permissive": true, "section": true})
+    .then(r => {
+      elm_container.innerHTML = r
+    })
+  }
+})
+</script>
+<style>
+li:has([type="checkbox"]) {
+  list-style: none;
+  text-indent: -1.5em;
+}
+.user-content-return-arrow {
+  display: inline-block;
+  height: 12px;
+  vertical-align: middle;
+  fill: #00f;
+}
+section {
+  margin: 0;
+}
+section > section {
+  margin-left: 15px;
+}
+section + section {
+  margin-top: 15px;
+}
+h1 {
+  font-size: 38px;
+}
+h2 {
+  font-size: 32px;
+}
+h3 {
+  font-size: 27px;
+}
+h4 {
+  font-size: 23px;
+}
+h5 {
+  font-size: 20px;
+}
+h6 {
+  font-size: 18px;
+}
+blockquote {
+  padding-left: 10px;
+  border-left: 7px solid #ccc;
+}
+blockquote blockquote {
+  margin-left: 0;
+}
+code {
+  padding: 3px;
+  color: #f8f8f2;
+  background-color: #272822;
+  border-radius: 3px;
+}
+pre code {
+  display: inline-block;
+  padding: 10px;
+  line-height: 1.5em;
+}
+table + table {
+  margin-top: 20px;
+}
+table,
+td,
+th {
+  border-style: solid;
+  border-color: #0d0015;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-width: 1px;
+}
+td,
+th {
+  padding: 5px 10px;
+  vertical-align: top;
+  border-width: 1px 0 0 1px;
+}
+tr:first-child td,
+tr:first-child th {
+  border-top-width: 0;
+}
+td:first-child,
+th:first-child {
+  border-left-width: 0;
+}
+thead + tbody tr:first-child td,
+thead + tbody tr:first-child th {
+  border-top-width: 1px;
+}
+tfoot tr:first-child td,
+tfoot tr:first-child th {
+  border-top-width: 1px;
+}
+sup a {
+  text-decoration: none;
+  color: #00f;
+}
+</style>
+  

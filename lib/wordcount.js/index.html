@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+  <head prefix="og: https://ogp.me/ns#">
+    <title>ネット小説の文字数カウンター</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="文字数を数えます。ネット小説のルビ記法を解釈ししてルビを数えません。かな・漢字、地の文・台詞の比率を算出します。">
+    <meta property="og:title" content="ネット小説の文字数カウンター">
+    <meta property="og:description" content="文字数を数えます。ネット小説のルビ記法を解釈ししてルビを数えません。かな・漢字、地の文・台詞の比率を算出します。">
+    <meta property="og:type" content="application">
+    <meta property="og:url" content="https://satsuki-thyme.github.io/wordcount.js/">
+    <meta property="og:image" content="https://satsuki-thyme.github.io/wordcount.js/screenshot.png">
+    <style>
+      :root {
+        --dark--2: #080807;
+        --dark--1: #10110f;
+        --dark-0: #1e1f1c;
+        --dark-1: #30312d;
+        --dark-2: #484944;
+        --light--2: #c2bbad;
+        --light--1: #e7e1d6;
+        --light-0: #f1eee9;
+        --light-1: #faf4ec;
+        --light-2: #fffdf9;
+        --passion--1: #701302;
+        --passion-0: #aa1f06;
+        --passion-1: #c22e14;
+        --orange--1: #c57907;
+        --orange-0: #e79213;
+        --orange-1: #f8a932;
+        --lime--1: #88b326;
+        --lime-0: #b5e24a;
+        --lime-1: #cffd63;
+        --forest--1: #023112;
+        --forest-0: #065320;
+        --forest-1: #096929;
+        --turquoise--1: #0f9999;
+        --turquoise-0: #1ac0c0;
+        --turquoise-1: #2edddd;
+        --sky--1: #0a76ce;
+        --sky-0: #1293fc;
+        --sky-1: #46acff;
+        --ocean--1: #06216b;
+        --ocean-0: #0a3099;
+        --ocean-1: #0d42d4;
+        --grape--1: #780986;
+        --grape-0: #930ca5;
+        --grape-1: #bd14d3;
+      }
+      body {
+        width: 600px;
+        margin: auto;
+        font-family: Helvetica, Arial, "ヒラギノ角ゴシック", "游ゴシック", "メイリオ";
+        color: var(--dark-0);
+        background-color: var(--light-0);
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          color: var(--light-0);
+          background-color: var(--dark-0);
+        }
+      }
+      html.light body {
+        color: var(--dark-0);
+        background-color: var(--light-0);
+      }
+      html.dark body {
+        color: var(--light-0);
+        background-color: var(--dark-0);
+      }
+      table,
+      td,
+      th {
+        border-style: solid;
+        border-color: var(--dark-2);
+      }
+      table {
+        border-collapse: separate;
+        border-spacing: 0;
+        border-width: 1px;
+      }
+      td,
+      th {
+        padding: 5px 10px;
+        line-height: 1.5;
+        vertical-align: top;
+        border-width: 1px 0 0 1px;
+      }
+      tr:first-child td,
+      tr:first-child th {
+        border-top-width: 0;
+      }
+      td:first-child,
+      th:first-child {
+        border-left-width: 0;
+      }
+      thead + tbody tr:first-child td,
+      thead + tbody tr:first-child th {
+        border-top-width: 1px;
+      }
+      tfoot tr:first-child td,
+      tfoot tr:first-child th {
+        border-top-width: 1px;
+      }
+      section {
+        max-width: 500px;
+        margin: auto;
+      }
+      section section {
+        margin-left: 20px;
+      }
+      section section section {
+        margin-left: 40px;
+      }
+      section + section {
+        margin-top: 50px;
+      }
+      section section + section {
+        margin-top: 30px;
+      }
+      section section section + section {
+        margin-top: 10px;
+      }
+      section p,
+      section ul,
+      section ol,
+      section input,
+      section textarea {
+        margin-left: 30px;
+      }
+      h1 {
+        font-size: 26px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+      h3 {
+        font-size: 16px;
+      }
+      ul,
+      ol {
+        padding-left: 1.5em;
+      }
+      #page-header {
+        padding-top: 26px;
+        text-align: center;
+      }
+      #page-main {
+        margin-top: 45px;
+      }
+      #page-footer {
+        margin-top: 50px;
+      }
+      #container {
+        max-width: 600px;
+        margin: auto;
+      }
+      #page-footer {
+        text-align: center;
+      }
+      #textarea {
+        display: block;
+        width: 100%;
+        height: 200px;
+        max-width: 400px;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      #table-stage {
+        min-height: 200px;
+        padding: 15px;
+        border: 1px solid var(--dark-1)
+      }
+      .file-name {
+        text-align: left;
+      }
+      .text-length {
+        text-align: right;
+      }
+      .kana-kanji-ratio,
+      .description-word-ratio,
+      .letter-length {
+        text-align: center;
+      }
+    </style>
+    <script src="wordcount.js"></script>
+    <script>
+      document.addEventListener(`DOMContentLoaded`, () => {
+        let elmHtml = document.querySelector(`html`)
+        let elmBody = document.querySelector(`body`)
+        let elmContainer = document.querySelector(`#container`)
+        let elmInput = document.querySelector(`#input`)
+        let elmTextarea = document.querySelector(`#textarea`)
+        let elmTableStage = document.querySelector(`#table-stage`)
+        window.ondragover = e => {
+          e.preventDefault()
+          e.stopPropagation()
+        }
+        window.ondrop = e => {
+          e.preventDefault()
+          procAll(e, `dataTransfer`)
+        }
+        elmInput.oninput = e => {
+          procAll(e, `target`)
+        }
+        elmTextarea.oninput = e => {
+          procAll(e, `value`)
+        }
+        function procAll(e, inputMethod) {
+          wordcountWrapper(e, inputMethod)
+          .then(rly => {
+            elmTableStage.innerHTML = makeTable(rly)
+          })
+        }
+        async function wordcountWrapper(eventInput, inputMethod) {
+          let w = []
+          let files = null
+          let fn = {
+            dataTransfer: e => {
+              return e.dataTransfer.files
+            },
+            target: e => {
+              return e.target.files
+            },
+            value: async () => {
+              let w = await wordcount(elmTextarea.value)
+              return [Object.assign({"name": "-"}, w)]
+            }
+          }
+          if (inputMethod === `dataTransfer`) {
+            files = fn.dataTransfer(eventInput)
+          }
+          else if (inputMethod === `target`) {
+            files = fn.target(eventInput)
+          }
+          else if (inputMethod === `value`) {
+            return fn.value()
+          }
+          else {
+            console.error(`フェイルセーフが働きました`)
+          }
+          let fr = new FileReader()
+          return new Promise(resolve => {
+            let i = 0
+            fn()
+            function fn() {
+              fr.readAsText(files[i])
+              fr.onload = () => {
+                wordcount(fr.result)
+                .then(rly => {
+                  w[i] = Object.assign({"name": files[i].name}, rly)
+                  if (i < files.length - 1) {
+                    i++
+                    fn()
+                  }
+                  else {
+                    resolve(w)
+                  }
+                })
+              }
+            }
+          })
+        }
+        function makeTable(src) {
+          let w0 = []
+          let w1 = {"name": "合計", "total": 0, "kanji": 0, "parenthesis": 0, "letterLength": 0}
+          for (let i in src) {
+            let kanjiRatio = 0
+            let parenthesisRatio = 0
+            if (src[i].total > 0) {
+              kanjiRatio = Math.round(src[i].kanji / src[i].total * 10)
+              parenthesisRatio = Math.round(src[i].parenthesis / src[i].total * 10)
+              w0[i] = `<tr><td class="file-name">${src[i].name}</td><td class="text-length">${src[i].total}</td><td class="kana-kanji-ratio">${10 - kanjiRatio} : ${kanjiRatio}</td><td class="description-word-ratio">${10 - parenthesisRatio} : ${parenthesisRatio}</td><td class="letter-length">${Math.round(src[i].letterLength)}</td></tr>`
+              w1 = {"name": "合計", "total": w1.total + src[i].total, "kanji": w1.kanji + src[i].kanji, "parenthesis": w1.parenthesis + src[i].parenthesis, "letterLength": w1.letterLength + src[i].letterLength}
+            }
+            else {
+              w0[i] = `<tr><td class="file-name">${src[i].name}</td><td class="text-length">${src[i].total}</td><td class="kana-kanji-ratio">- : -</td><td class="description-word-ratio">- : -</td><td class="letter-length">${Math.round(src[i].letterLength)}</td></tr>`
+              w1 = {"name": "合計", "total": w1.total + src[i].total, "kanji": w1.kanji + src[i].kanji, "parenthesis": w1.parenthesis + src[i].parenthesis, "letterLength": w1.letterLength + src[i].letterLength}
+            }
+          }
+          w0.sort()
+          w1.letterLength = Math.round(w1.letterLength / src.length)
+          let kanjiRatioTotal = Math.round(w1.kanji / w1.total * 10)
+          let parenthesisRatioTotal = Math.round(w1.parenthesis / w1.total * 10)
+          let total = `<tr><td class="file-name">${[w1.name]}</td><td class="text-length">${w1.total}</td><td class="kana-kanji-ratio">${10 - kanjiRatioTotal} : ${kanjiRatioTotal}</td><td class="description-word-ratio">${10 - parenthesisRatioTotal} : ${parenthesisRatioTotal}</td><td class="letter-length">${w1.letterLength}</td></tr>`
+          let thead = `<thead><tr><th class="file-name">ファイル名</th><th class="text-length">文字数</th><th class="kana-kanji-ratio">かな : 漢字</th><th class="description-word-ratio">地文 : 台詞</th><th class="letter-length">平均文長</th></tr></thead>`
+          let tbody = `<tbody>${w0.join(`\n`)}\n${total}</tbody>`
+          return `<table>${thead}\n${tbody}</table>`
+        }
+      })
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <header id="page-header">
+        <h1 id="page-title">ネット小説の文字数カウンター</h1>
+      </header>
+      <main id="page-main">
+        <section id="input-area">
+          <h2>入力</h2>
+          <section>
+            <h3>[ 方法 1 ] ファイルを選択</h3>
+            <input id="input" type="file" multiple>
+          </section>
+          <section>
+            <h3>[ 方法 2 ] ファイルをドロップ</h3>
+            <p>画面上にファイルをドロップしてください。</p>
+          </section>
+          <section>
+            <h3>[ 方法 3 ] 文章をペースト</h3>
+            <textarea id="textarea"></textarea>
+          </section>
+        </section>
+        <section>
+          <h2>出力</h2>
+          <div id="table-stage"></div>
+        </section>
+        <section id="description">
+          <h2>解説</h2>
+          <section>
+            <h3>対応</h3>
+            <ul>
+              <li>Chrome</li>
+              <li>Edge</li>
+            </ul>
+            <p>Safari には対応していません。ごめんなさい</p>
+          </section>
+          <section>
+            <h3>ファイルの読み込み</h3>
+            <ul>
+              <li>テキストファイルのみ読み込むことができます</li>
+              <li>ボタンからファイルを選んで読み込ませることができます</li>
+              <li>ファイルをドロップすることで読み込ませることができます</li>
+              <li>ファイルを読み込ませる際には複数のファイルを扱うことができます</li>
+            </ul>
+          </section>
+          <section>
+            <h3>文章のペースト</h3>
+            <ul>
+              <li>テキストボックスに文章をペーストすることで読み込ませられます</li>
+            </ul>
+          </section>
+          <section>
+            <h3>全般のこと</h3>
+            <ul>
+              <li>ルビは数えません</li>
+            </ul>
+          </section>
+        </section>
+      </main>
+      <footer id="page-footer">
+        <p id="copywrite">&copy; Satsuki Tyme</p>
+      </footer>
+    </div>
+  </body>
+</html>
