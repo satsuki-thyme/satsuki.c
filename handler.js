@@ -516,7 +516,12 @@ async function procMain(marksPreposition, marksEnclosure){
                     }
                   })
                   .then(rly => {
-                    return [dn, title, rly[`description`][infoContents]]
+                    if (rly) {
+                      return [dn, title, rly[`description`][infoContents]]
+                    }
+                    else {
+                      return [dn, title, ``]
+                    }
                   })
                 }
                 else {
@@ -2116,7 +2121,7 @@ async function procMain(marksPreposition, marksEnclosure){
           notFoundField.classList.add(`not-found`)
         }
         characterCountLogTable.innerHTML = `<p>小説制作 文字数ログ</p>
-        <div id="status-switch">
+        <div id="period-switch">
           <label><input type="radio" name="period-switch" value="d7" checked>7日</label>
           <label><input type="radio" name="period-switch" value="d30">30日</label>
           <label><input type="radio" name="period-switch" value="all">全期間</label>
@@ -2129,7 +2134,7 @@ async function procMain(marksPreposition, marksEnclosure){
         notFoundField.innerHTML += notFoundAccum
         let dataTable = document.querySelector(`#data-table`)
         toX()
-        document.querySelectorAll(`#status-switch input`).forEach(e => {
+        document.querySelectorAll(`#period-switch input`).forEach(e => {
           e.onchange = () => {
             dataTable.classList = e.value
           }
