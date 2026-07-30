@@ -26,14 +26,14 @@ let characterCountLogInitializeSwitch = false
 */
 let githubRawFront = `//raw.githubusercontent.com/satsuki-thyme`
 let githubRawBack = `master`
-let internetSiteRepo = `satsuki`
+let internetSiteRepo = `satsuki.c`
 let localTextDir = `scribe/novel`
 let basePage = `index.html`
 let indexFile = `index.json`
 let indvIndexFile = `README.md`
 let libDir = `lib`
 let listDir = `list`
-let etcDir = `novel-etc/satsuki`
+let etcDir = `novel-etc/satsuki.c`
 let additionDataFile = `addition.json`
 let markupFile = `markup.json`
 let localSever = `https://satsuki.c`
