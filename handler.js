@@ -1918,8 +1918,8 @@ async function procMain(marksPreposition, marksEnclosure){
                 return fetch(`${textDir}/${e.dn}/${indvIndexFile}`)
                 .then(async rly => {
                   if (rly.ok) {
-                    let tocBlob = (await rly.text())
-                    .match(reTocBlob)[0]
+                    let tocBlob = ((await rly.text())
+                    .match(reTocBlob) || [false])[0]
                     let textBlobArray = (tocBlob
                     .match(reTextBlob) || [false])
                     let docBlob = false
