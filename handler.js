@@ -83,6 +83,12 @@ let defaultExternalFileDir = {
 let indivMarkupFileDir = baseURL
 let reTextPage = new RegExp(`^${dn}/(?!.*${listDir}).*`)
 
+// リンク
+let urlTextt = `https://textt.net/camellia/` + {
+  "72": `20260723070239`,
+  "76": `20260722004514`
+}[dn]
+
 // リスト
 let markup = []
 let reListURLs = null
@@ -2247,7 +2253,7 @@ async function procMain(marksPreposition, marksEnclosure){
           "episode_num": currNum + 1,
           "subtitle": subtitle,
           "description": await description(),
-          "link_url": `https://satsuki.me/index.html?q=${dn}/${dirAndFile}`,
+          "link_url": urlTextt,
           "text_follow_option": textFollowOption(),
           "text_no_ruby": await textNoRuby(),
           "text_length": (await textLength()).total
