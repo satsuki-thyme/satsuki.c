@@ -85,8 +85,8 @@ let reTextPage = new RegExp(`^${dn}/(?!.*${listDir}).*`)
 
 // リンク
 let urlTextt = `https://textt.net/camellia/` + {
-  "72": `20260723070239`,
-  "76": `20260722004514`
+  "op72": `20260723070239`,
+  "op76": `20260722004514`
 }[dn]
 
 // リスト
