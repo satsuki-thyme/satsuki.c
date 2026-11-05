@@ -33,7 +33,7 @@ let indexFile = `index.json`
 let indvIndexFile = `README.md`
 let libDir = `lib`
 let listDir = `list`
-let etcDir = `novel-etc/satsuki.c`
+let etcDir = `etc/satsuki.c`
 let additionDataFile = `addition.json`
 let markupFile = `markup.json`
 let localSever = `https://satsuki.c`
@@ -575,7 +575,7 @@ async function procMain(marksPreposition, marksEnclosure){
         "failedToFetchingReadme": "${indvIndexFile} の読み込みに失敗しました。",
         "failedToFetchingFile": "本文ファイルの取得に失敗しました。"
       }
-      //🟧🟧🟧 work location 🟧🟧🟧 エピソードを結合するリンクの設置
+      // work location エピソードを結合するリンクの設置
       // return
       //
       // indvIndexFile: opごとのインデックスファイル
@@ -2047,7 +2047,7 @@ async function procMain(marksPreposition, marksEnclosure){
                 return rly
                 .map(e => {
                   if (e[0]) {
-                    let len = e[0].replace(/[\s]/g, ``).length
+                    let len = e[0].replace(/[\s\w]/g, ``).length
                     return spcFileExtArray[e[1]] === undefined ? len : Math.round(len * spcFileExtArray[e[1]])
                   }
                   else {
