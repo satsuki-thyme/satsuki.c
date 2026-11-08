@@ -2023,7 +2023,7 @@ async function procMain(marksPreposition, marksEnclosure){
                           ]
                         }
                         else {
-                          return [await rly.text(), e.match(/[^.]*$/)[0]]
+                          return [(await rly.text()).replace(/\d+\. |[ -/:-@[-´{-~\w]/g, ``), e.match(/[^.]*$/)[0]]
                         }
                       }
                       else {
@@ -2047,7 +2047,7 @@ async function procMain(marksPreposition, marksEnclosure){
                 return rly
                 .map(e => {
                   if (e[0]) {
-                    let len = e[0].replace(/[ -/:-@[-´{-~\s\w]/g, ``).length
+                    let len = e[0].replace(/[\s]/g, ``).length
                     return spcFileExtArray[e[1]] === undefined ? len : Math.round(len * spcFileExtArray[e[1]])
                   }
                   else {
