@@ -2047,7 +2047,7 @@ async function procMain(marksPreposition, marksEnclosure){
                 return rly
                 .map(e => {
                   if (e[0]) {
-                    let len = e[0].replace(/[\s\w]/g, ``).length
+                    let len = e[0].replace(/[ -/:-@[-´{-~\s\w]/g, ``).length
                     return spcFileExtArray[e[1]] === undefined ? len : Math.round(len * spcFileExtArray[e[1]])
                   }
                   else {
